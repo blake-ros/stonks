@@ -14,7 +14,7 @@ app.use(sessionMiddleware);
 app.use(express.json());
 
 app.get('/api/health-check', (req, res, next) => {
-  db.query(`select 'successfully connected' as "message"`)
+  db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 });
@@ -35,6 +35,8 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(process.env.PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(process.env.PORT);
   // eslint-disable-next-line no-console
   console.log('Listening on port', process.env.PORT);
 });
